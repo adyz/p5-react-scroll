@@ -39,17 +39,14 @@ class App extends React.Component {
       <div style={styles}>
         <div style={header}>
           <h1>Start scrolling</h1>
-          <h6>
-            Scroll direction is: {this.state.scrollDirection}{" "}
-            <button onClick={() => this.updateDirection("down")}>Update</button>
-          </h6>
+          <h6>Scroll direction is: {this.state.scrollDirection}</h6>
         </div>
         <P5Wrapper sketch={sketch} />
       </div>
     );
   }
 }
-render(<App />, document.getElementById("root"));
+const myapp = render(<App />, document.getElementById("root"));
 
 function sketch(p) {
   let background = "#333";
@@ -57,13 +54,19 @@ function sketch(p) {
   let boxSize = 30;
   let width = window.innerWidth;
   let height = window.innerHeight;
+  // let posX = width / 2 - boxSize / 2;
+  // let posY = height / 2 - boxSize / 2;
   p.setup = () => {
-    p.createCanvas(width, height);
+    p.createCanvas(width - 10, height - 10, 10, 10);
+  };
+
+  const drawRect = () => {
+    p.rect(p.mouseX - boxSize / 2, p.mouseY - boxSize / 2, boxSize, boxSize);
   };
 
   p.draw = () => {
     p.background(background);
-    p.rect(width / 2 - boxSize / 2, height / 2 - boxSize / 2, boxSize, boxSize);
+    drawRect();
   };
 
   // Start it up
@@ -74,14 +77,21 @@ function sketch(p) {
   //Scroll
   p.mouseWheel = ev => {
     ev.preventDefault();
+    const test = lastScrollTop;
     lastScrollTop = lastScrollTop + ev.delta;
     //console.log("Ev", lastScrollTop);
-    if (lastScrollTop > -30) {
+    if (lastScrollTop >= -30) {
       //console.log("I am over");
-      lastScrollTop = -31;
-      boxSize = 30;
+      lastScrollTop = -30;
+      boxSize = 30 * 2;
     } else {
-      boxSize = lastScrollTop;
+      boxSize = lastScrollTop * 2;
+    }
+
+    if (lastScrollTop > test) {
+      myapp.updateDirection("down:" + lastScrollTop);
+    } else {
+      myapp.updateDirection("up: " + lastScrollTop);
     }
 
     background = "#ccc";
