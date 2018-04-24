@@ -1,0 +1,20 @@
+{
+  "name": "p5-in-react-scroll",
+  "description": "Init base",
+  "version": "0.0.55",
+  "dependencies": {
+    "react-p5-wrapper": "0.0.4",
+    "react-dom": "15.5.3",
+    "react": "15.5.3",
+    "p5": "0.5.14"
+  },
+  "devDependencies": {
+    "react-scripts": "1.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "p5-in-react-scroll",
+  "version": "1.0.0",
+  "description": "Init base",
+  "keywords": [],
+  "homepage": "https://codesandbox.io/s/8x7okwq9z8",
+  "main": "index.js",
+  "dependencies": {
+    "react-p5-wrapper": "0.0.4",
+    "react-dom": "15.5.3",
+    "react": "15.5.3",
+    "p5": "0.5.14"
+  }
+}
